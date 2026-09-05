@@ -53,14 +53,14 @@
       display: flex;
       cursor: pointer;
       perspective: 1000px;
-      transition: visibility 1s, opacity 1s;
+      transition: visibility 1.2s, opacity 1.2s;
     }
 
     .door {
       width: 50%;
       height: 100%;
       background: var(--wood-color);
-      background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+      background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
       border: 2px solid #3d2615;
       position: relative;
       transition: transform 1.5s ease-in-out;
@@ -79,12 +79,11 @@
       border-left: 1px solid #2d1c0f;
     }
 
-    /* مقبض الباب */
     .handle {
-      width: 15px;
-      height: 50px;
+      width: 14px;
+      height: 48px;
       background: var(--accent-color);
-      border-radius: 5px;
+      border-radius: 4px;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -96,7 +95,7 @@
 
     .click-hint {
       position: absolute;
-      bottom: 20%;
+      bottom: 18%;
       width: 100%;
       text-align: center;
       color: #fff;
@@ -142,13 +141,13 @@
     }
 
     .title-bismillah {
-      font-size: 0.9rem;
-      color: #777;
+      font-size: 0.95rem;
+      color: #666;
       margin-bottom: 20px;
     }
 
     .names {
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: var(--wood-color);
       margin: 15px 0;
       font-weight: bold;
@@ -156,7 +155,7 @@
 
     .names span {
       display: block;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: var(--accent-color);
       margin: 5px 0;
     }
@@ -181,7 +180,6 @@
       font-size: 0.95rem;
     }
 
-    /* المؤقت التنازلي */
     .countdown {
       display: flex;
       justify-content: center;
@@ -207,7 +205,6 @@
       font-size: 0.7rem;
     }
 
-    /* زر الموقع */
     .map-btn {
       display: inline-block;
       background: var(--accent-color);
@@ -229,14 +226,12 @@
 <body>
 
   <div class="container" id="mainContainer">
-    <!-- الأبواب -->
     <div class="door-wrapper" id="doorWrapper">
       <div class="door door-left"><div class="handle"></div></div>
       <div class="door door-right"><div class="handle"></div></div>
       <div class="click-hint">اضغط هنا لفتح الدعوة ✉️</div>
     </div>
 
-    <!-- محتوى الدعوة -->
     <div class="card-content">
       <p class="title-bismillah">بسم الله الرحمن الرحيم</p>
       
@@ -251,12 +246,11 @@
       </p>
 
       <div class="details-box">
-        <div class="details-item">📅 <strong>التاريخ:</strong> الجمعة، 27 نوفمبر 2026</div>
+        <div class="details-item">📅 <strong>التاريخ:</strong> الجمعة، 27 تشرين الثاني (نوفمبر) 2026</div>
         <div class="details-item">🕓 <strong>الوقت:</strong> الساعة 4:00 عصراً</div>
-        <div class="details-item">📍 <strong>المكان:</strong> قاعة زيونة للأعراس والمناسبات</div>
+        <div class="details-item">📍 <strong>المكان:</strong> قاعة زيونة للأعراس والمناسبات - بغداد</div>
       </div>
 
-      <!-- العداد التنازلي -->
       <div class="countdown" id="countdown">
         <div class="time-unit"><span id="days">00</span><label>يوم</label></div>
         <div class="time-unit"><span id="hours">00</span><label>ساعة</label></div>
@@ -264,30 +258,20 @@
         <div class="time-unit"><span id="seconds">00</span><label>ثانية</label></div>
       </div>
 
-      <!-- زر الخريطة -->
-      <a href="https://maps.google.com/?q=قاعة+زيونة+للأعراس" target="_blank" class="map-btn">
+      <a href="https://maps.google.com/?q=قاعة+زيونة+للأعراس+والمناسبات+بغداد" target="_blank" class="map-btn">
         📍 موقع القاعة على الخريطة
       </a>
     </div>
   </div>
 
-  <!-- صوت الأغنية (ضع رابط الأغنية أو اسم الملف هنا) -->
-  <audio id="bgMusic" src="music.mp3" preload="auto"></audio>
-
   <script>
     const doorWrapper = document.getElementById('doorWrapper');
     const mainContainer = document.getElementById('mainContainer');
-    const bgMusic = document.getElementById('bgMusic');
 
-    // فتح الباب وتشغيل الأغنية
+    // فتح الباب
     doorWrapper.addEventListener('click', () => {
       doorWrapper.classList.add('open');
       mainContainer.classList.add('active');
-      
-      // تشغيل الموسيقى
-      bgMusic.play().catch(error => {
-        console.log("تعذر التشغيل التلقائي للملف الصوتية:", error);
-      });
     });
 
     // العداد التنازلي لغاية 27-11-2026 الساعة 16:00
@@ -307,6 +291,8 @@
         document.getElementById('hours').innerText = hours;
         document.getElementById('minutes').innerText = minutes;
         document.getElementById('seconds').innerText = seconds;
+      } else {
+        document.getElementById('countdown').innerHTML = "<p>أهلاً وسهلاً بكم في حفلنا!</p>";
       }
     }
 
