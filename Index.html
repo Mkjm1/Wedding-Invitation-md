@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دعوة زفاف مهدي وضحى</title>
+  <style>
+    :root {
+      --bg-color: #fdfbf7;
+      --accent-color: #d4af37;
+      --text-color: #333;
+      --wood-color: #5c3a21;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 450px;
+      min-height: 100vh;
+      background: #fff;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* الأبواب التفاعلية */
+    .door-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      display: flex;
+      cursor: pointer;
+      perspective: 1000px;
+      transition: visibility 1s, opacity 1s;
+    }
+
+    .door {
+      width: 50%;
+      height: 100%;
+      background: var(--wood-color);
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+      border: 2px solid #3d2615;
+      position: relative;
+      transition: transform 1.5s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .door-left {
+      transform-origin: left;
+      border-right: 1px solid #2d1c0f;
+    }
+
+    .door-right {
+      transform-origin: right;
+      border-left: 1px solid #2d1c0f;
+    }
+
+    /* مقبض الباب */
+    .handle {
+      width: 15px;
+      height: 50px;
+      background: var(--accent-color);
+      border-radius: 5px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+
+    .door-left .handle { right: 10px; }
+    .door-right .handle { left: 10px; }
+
+    .click-hint {
+      position: absolute;
+      bottom: 20%;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-size: 1.1rem;
+      z-index: 101;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    .door-wrapper.open .door-left {
+      transform: rotateY(-110deg);
+    }
+
+    .door-wrapper.open .door-right {
+      transform: rotateY(110deg);
+    }
+
+    .door-wrapper.open {
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition-delay: 1.2s;
+    }
+
+    /* محتوى الدعوة */
+    .card-content {
+      width: 100%;
+      padding: 40px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease 1s;
+    }
+
+    .container.active .card-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .title-bismillah {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    .names {
+      font-size: 2rem;
+      color: var(--wood-color);
+      margin: 15px 0;
+      font-weight: bold;
+    }
+
+    .names span {
+      display: block;
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      margin: 5px 0;
+    }
+
+    .invitation-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+      margin: 20px 0;
+    }
+
+    .details-box {
+      background: #f9f6f0;
+      border: 1px dashed var(--accent-color);
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .details-item {
+      margin: 10px 0;
+      font-size: 0.95rem;
+    }
+
+    /* المؤقت التنازلي */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .time-unit {
+      background: var(--wood-color);
+      color: #fff;
+      padding: 8px;
+      border-radius: 5px;
+      min-width: 55px;
+    }
+
+    .time-unit span {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .time-unit label {
+      font-size: 0.7rem;
+    }
+
+    /* زر الموقع */
+    .map-btn {
+      display: inline-block;
+      background: var(--accent-color);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      margin-top: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+
+    .map-btn:hover {
+      background: #c29f2e;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="mainContainer">
+    <!-- الأبواب -->
+    <div class="door-wrapper" id="doorWrapper">
+      <div class="door door-left"><div class="handle"></div></div>
+      <div class="door door-right"><div class="handle"></div></div>
+      <div class="click-hint">اضغط هنا لفتح الدعوة ✉️</div>
+    </div>
+
+    <!-- محتوى الدعوة -->
+    <div class="card-content">
+      <p class="title-bismillah">بسم الله الرحمن الرحيم</p>
+      
+      <div class="names">
+        مهدي كريم
+        <span>&</span>
+        ضحى
+      </div>
+
+      <p class="invitation-text">
+        يتشرفان بدعوتكم لمشاركتهما فرحتهما بمناسبة عقد قرانهما وزفافهما المبارك.
+      </p>
+
+      <div class="details-box">
+        <div class="details-item">📅 <strong>التاريخ:</strong> الجمعة، 27 نوفمبر 2026</div>
+        <div class="details-item">🕓 <strong>الوقت:</strong> الساعة 4:00 عصراً</div>
+        <div class="details-item">📍 <strong>المكان:</strong> قاعة زيونة للأعراس والمناسبات</div>
+      </div>
+
+      <!-- العداد التنازلي -->
+      <div class="countdown" id="countdown">
+        <div class="time-unit"><span id="days">00</span><label>يوم</label></div>
+        <div class="time-unit"><span id="hours">00</span><label>ساعة</label></div>
+        <div class="time-unit"><span id="minutes">00</span><label>دقيقة</label></div>
+        <div class="time-unit"><span id="seconds">00</span><label>ثانية</label></div>
+      </div>
+
+      <!-- زر الخريطة -->
+      <a href="https://maps.google.com/?q=قاعة+زيونة+للأعراس" target="_blank" class="map-btn">
+        📍 موقع القاعة على الخريطة
+      </a>
+    </div>
+  </div>
+
+  <!-- صوت الأغنية (ضع رابط الأغنية أو اسم الملف هنا) -->
+  <audio id="bgMusic" src="music.mp3" preload="auto"></audio>
+
+  <script>
+    const doorWrapper = document.getElementById('doorWrapper');
+    const mainContainer = document.getElementById('mainContainer');
+    const bgMusic = document.getElementById('bgMusic');
+
+    // فتح الباب وتشغيل الأغنية
+    doorWrapper.addEventListener('click', () => {
+      doorWrapper.classList.add('open');
+      mainContainer.classList.add('active');
+      
+      // تشغيل الموسيقى
+      bgMusic.play().catch(error => {
+        console.log("تعذر التشغيل التلقائي للملف الصوتية:", error);
+      });
+    });
+
+    // العداد التنازلي لغاية 27-11-2026 الساعة 16:00
+    const targetDate = new Date('November 27, 2026 16:00:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = days;
+        document.getElementById('hours').innerText = hours;
+        document.getElementById('minutes').innerText = minutes;
+        document.getElementById('seconds').innerText = seconds;
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
