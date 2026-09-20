@@ -1,301 +1,445 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>دعوة زفاف مهدي وضحى</title>
+  <title>دعوة زفاف مهدي كريم</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #fdfbf7;
-      --accent-color: #d4af37;
-      --text-color: #333;
-      --wood-color: #5c3a21;
+      --coral: #c9573d;
+      --coral-deep: #9d3a2c;
+      --ink: #103e43;
+      --cream: #fff6e8;
+      --sand: #f2dfc4;
+      --gold: #f4d7aa;
+      --line: rgba(16, 62, 67, .16);
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      margin: 0;
+      font-family: "Amiri", serif;
+      color: var(--ink);
       overflow-x: hidden;
+      background: var(--cream);
     }
-
-    .container {
+    .page-shell {
       width: 100%;
-      max-width: 450px;
       min-height: 100vh;
-      background: #fff;
       position: relative;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
-
-    /* الأبواب التفاعلية */
-    .door-wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 100;
-      display: flex;
-      cursor: pointer;
-      perspective: 1000px;
-      transition: visibility 1.2s, opacity 1.2s;
-    }
-
-    .door {
-      width: 50%;
-      height: 100%;
-      background: var(--wood-color);
-      background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
-      border: 2px solid #3d2615;
-      position: relative;
-      transition: transform 1.5s ease-in-out;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .door-left {
-      transform-origin: left;
-      border-right: 1px solid #2d1c0f;
-    }
-
-    .door-right {
-      transform-origin: right;
-      border-left: 1px solid #2d1c0f;
-    }
-
-    .handle {
-      width: 14px;
-      height: 48px;
-      background: var(--accent-color);
-      border-radius: 4px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    }
-
-    .door-left .handle { right: 10px; }
-    .door-right .handle { left: 10px; }
-
-    .click-hint {
-      position: absolute;
-      bottom: 18%;
-      width: 100%;
-      text-align: center;
-      color: #fff;
-      font-size: 1.1rem;
-      z-index: 101;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
-    .door-wrapper.open .door-left {
-      transform: rotateY(-110deg);
-    }
-
-    .door-wrapper.open .door-right {
-      transform: rotateY(110deg);
-    }
-
-    .door-wrapper.open {
+    .page-shell::before {
+      content: "";
+      position: fixed;
+      inset: 0;
       pointer-events: none;
+      opacity: .35;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(201, 87, 61, .12) 0 2px, transparent 2.5px),
+        radial-gradient(circle at 85% 70%, rgba(16, 62, 67, .1) 0 1px, transparent 1.5px);
+      background-size: 36px 36px, 52px 52px;
+      z-index: 0;
+    }
+    header, main, footer { position: relative; z-index: 1; }
+    .top-nav {
+      backdrop-filter: blur(14px);
+      background: rgba(255, 246, 232, .9);      border-bottom: 1px solid var(--line);
+    }
+    .nav-link {
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      text-decoration: none;
+      font-size: .92rem;
+      transition: color .2s ease;
+    }
+    .nav-link:hover { color: var(--coral); }
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      align-items: stretch;
+      isolation: isolate;
+      position: relative;
+    }
+    .hero-image-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+    .hero-image-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(11, 55, 58, .93) 0%, rgba(11, 55, 58, .67) 45%, rgba(201, 87, 61, .25) 100%),
+        linear-gradient(0deg, rgba(11, 55, 58, .83) 0%, transparent 58%);
+    }
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(.18) saturate(1.1) contrast(1.04);
+      transform: scale(1.025);
+    }
+    .hero-content {
+      width: 100%;
+      max-width: 1150px;
+      margin: auto;
+      padding: 7.25rem 1.5rem 4.25rem;
+      color: var(--cream);
+    }
+    .hero-panel {
+      max-width: 700px;
+      border-right: 2px solid var(--gold);
+      padding: 1.25rem 1.75rem 1.25rem 0;
+      animation: rise .9s ease both;    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .floral-mark {
+      color: var(--gold);
+      font-size: 1.65rem;
+      letter-spacing: .5rem;
+    }
+    .hero-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem 1.25rem;
+      margin-top: 1.75rem;
+      font-family: "DM Sans", sans-serif;
+      font-size: .92rem;
+    }
+    .hero-details span {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .action-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      min-height: 46px;
+      padding: .7rem 1.15rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: inherit;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .action-button:hover { transform: translateY(-2px); }
+    .section-wrap {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5.5rem 1.5rem;
+    }
+    .section-kicker {
+      color: var(--coral);
+      letter-spacing: .1em;
+      font-family: "DM Sans", sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+    }    .section-heading {
+      color: var(--ink);
+      line-height: 1.15;
+      margin-top: .45rem;
+    }
+    .countdown-card {
+      margin-top: 2rem;
+      padding: 1.2rem;
+      border: 1px solid rgba(201, 87, 61, .28);
+      background: rgba(255, 253, 248, .85);
+      box-shadow: 0 17px 45px rgba(16, 62, 67, .09);
+    }
+    .countdown-grid {
+      direction: ltr;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .75rem;
+    }
+    .countdown-unit {
+      text-align: center;
+      padding: 1rem .5rem;
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .countdown-number {
+      display: block;
+      font-family: "DM Sans", sans-serif;
+      font-size: clamp(1.65rem, 5vw, 3rem);
+      line-height: 1;
+      font-weight: 700;
+    }
+    .countdown-label {
+      display: block;
+      direction: rtl;
+      margin-top: .45rem;
+      color: var(--gold);
+      font-size: .86rem;
+    }
+    .detail-card {
+      border-top: 3px solid var(--coral);
+      padding: 1.5rem;
+      background: #fffaf1;
+      box-shadow: 0 12px 30px rgba(16, 62, 67, .07);
+    }
+    .detail-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;      background: #f6dfc0;
+      color: var(--coral-deep);
+      margin-bottom: 1rem;
+    }
+    .rsvp-panel {
+      position: relative;
+      overflow: hidden;
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .rsvp-panel::after {
+      content: "♥";
+      position: absolute;
+      left: -1rem;
+      bottom: -3rem;
+      color: rgba(244, 215, 170, .12);
+      font-size: 14rem;
+      line-height: 1;
+    }
+    #entry-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    #entry-overlay.hidden-overlay {
       opacity: 0;
       visibility: hidden;
-      transition-delay: 1.2s;
+      pointer-events: none;
     }
-
-    /* محتوى الدعوة */
-    .card-content {
-      width: 100%;
-      padding: 40px 20px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 1s ease 1s;
+    .music-float {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 50;
+      background: var(--coral);
+      color: var(--cream);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border: 2px solid var(--gold);
+      animation: spin 4s linear infinite;      animation-play-state: paused;
     }
-
-    .container.active .card-content {
-      opacity: 1;
-      transform: translateY(0);
+    .music-float.playing {
+      animation-play-state: running;
     }
-
-    .title-bismillah {
-      font-size: 0.95rem;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    .names {
-      font-size: 2.2rem;
-      color: var(--wood-color);
-      margin: 15px 0;
-      font-weight: bold;
-    }
-
-    .names span {
-      display: block;
-      font-size: 1.3rem;
-      color: var(--accent-color);
-      margin: 5px 0;
-    }
-
-    .invitation-text {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #555;
-      margin: 20px 0;
-    }
-
-    .details-box {
-      background: #f9f6f0;
-      border: 1px dashed var(--accent-color);
-      padding: 15px;
-      border-radius: 8px;
-      margin: 20px 0;
-    }
-
-    .details-item {
-      margin: 10px 0;
-      font-size: 0.95rem;
-    }
-
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px 0;
-    }
-
-    .time-unit {
-      background: var(--wood-color);
-      color: #fff;
-      padding: 8px;
-      border-radius: 5px;
-      min-width: 55px;
-    }
-
-    .time-unit span {
-      display: block;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
-
-    .time-unit label {
-      font-size: 0.7rem;
-    }
-
-    .map-btn {
-      display: inline-block;
-      background: var(--accent-color);
-      color: #fff;
-      text-decoration: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      font-weight: bold;
-      margin-top: 15px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: background 0.3s;
-    }
-
-    .map-btn:hover {
-      background: #c29f2e;
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 640px) {
+      .hero-content { padding-top: 6.1rem; }
+      .hero-panel { padding-right: 1rem; }
+      .countdown-grid { gap: .45rem; }
+      .section-wrap { padding: 4rem 1.15rem; }
     }
   </style>
 </head>
 <body>
-
-  <div class="container" id="mainContainer">
-    <div class="door-wrapper" id="doorWrapper">
-      <div class="door door-left"><div class="handle"></div></div>
-      <div class="door door-right"><div class="handle"></div></div>
-      <div class="click-hint">اضغط هنا لفتح الدعوة ✉️</div>
-    </div>
-
-    <div class="card-content">
-      <p class="title-bismillah">بسم الله الرحمن الرحيم</p>
-      
-      <div class="names">
-        مهدي كريم
-        <span>&</span>
-        ضحى
-      </div>
-
-      <p class="invitation-text">
-        يتشرفان بدعوتكم لمشاركتهما فرحتهما بمناسبة عقد قرانهما وزفافهما المبارك.
-      </p>
-
-      <div class="details-box">
-        <div class="details-item">📅 <strong>التاريخ:</strong> الجمعة، 27 تشرين الثاني (نوفمبر) 2026</div>
-        <div class="details-item">🕓 <strong>الوقت:</strong> الساعة 4:00 عصراً</div>
-        <div class="details-item">📍 <strong>المكان:</strong> قاعة زيونة للأعراس والمناسبات - بغداد</div>
-      </div>
-
-      <div class="countdown" id="countdown">
-        <div class="time-unit"><span id="days">00</span><label>يوم</label></div>
-        <div class="time-unit"><span id="hours">00</span><label>ساعة</label></div>
-        <div class="time-unit"><span id="minutes">00</span><label>دقيقة</label></div>
-        <div class="time-unit"><span id="seconds">00</span><label>ثانية</label></div>
-      </div>
-
-      <a href="https://maps.google.com/?q=قاعة+زيونة+للأعراس+والمناسبات+بغداد" target="_blank" class="map-btn">
-        📍 موقع القاعة على الخريطة
-      </a>
+  <div id="entry-overlay">
+    <div class="text-center p-8 max-w-md mx-4">
+      <div class="text-[#f4d7aa] text-4xl mb-4">✦ ❋ ✦</div>
+      <h2 class="text-[#fff6e8] text-3xl font-bold mb-4">بسم الله الرحمن الرحيم</h2>
+      <p class="text-[#fff6e8] text-xl mb-8 leading-relaxed">يسعدني حضوركم ومشاركتي أفراحي<br>اضغط للدخول إلى الدعوة</p>
+      <button id="enter-btn" class="action-button bg-[#c9573d] text-[#fff6e8] px-8 py-3 rounded-full text-lg font-bold shadow-lg hover:bg-[#9d3a2c] transition-colors">
+        دخول وتأكيد الحضور
+      </button>
     </div>
   </div>
 
-  <script>
-    const doorWrapper = document.getElementById('doorWrapper');
-    const mainContainer = document.getElementById('mainContainer');
+  <audio id="bg-music" loop>
+    <source src="https://serv100.albumaty.com/songs_2020/Albumaty.Com_alysa_mn_awl_dkykt_-_ma_sad_lmgrd.mp3" type="audio/mpeg">
+  </audio>
 
-    // فتح الباب
-    doorWrapper.addEventListener('click', () => {
-      doorWrapper.classList.add('open');
-      mainContainer.classList.add('active');
+  <div id="music-float-btn" class="music-float" title="تشغيل/إيقاف الموسيقى">
+    <i data-lucide="music" width="24" height="24"></i>
+  </div>
+
+  <div class="page-shell">
+    <header class="top-nav fixed top-0 z-50 w-full">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4" aria-label="التنقل الرئيسي">
+        <a href="#home" class="text-xl font-bold no-underline" style="color: var(--ink);">دعوة زفاف</a>
+        <div class="flex items-center gap-6">
+          <a href="#details" class="nav-link">التفاصيل</a>
+          <a href="#rsvp" class="nav-link">تأكيد الحضور</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero" aria-labelledby="hero-title">
+        <div class="hero-image-wrap">
+          <img loading="lazy" class="hero-image" src="https://images.pexels.com/photos/30159419/pexels-photo-30159419.jpeg" alt="خلفية زفاف أنيقة">
+        </div>        <div class="hero-content">
+          <div class="hero-panel">
+            <div class="floral-mark" aria-hidden="true">✦ ❋ ✦</div>
+            <p class="mt-5 text-base tracking-[0.18em]" style="color: var(--gold); font-weight: 700;">بسم الله الرحمن الرحيم</p>
+            <h1 id="hero-title" class="mt-3 font-bold" style="color: var(--cream); font-size: 32px;">دعوة زفاف</h1>
+            <p class="mt-5 whitespace-pre-line text-5xl font-bold leading-tight sm:text-7xl" style="color: var(--cream);">مهدي كريم</p>
+            <p class="mt-5 max-w-xl text-xl leading-relaxed" style="color: var(--cream);">بكل الحب والفرح، يسعدني دعوتكم لمشاركتي أجمل لحظات العمر.</p>
+            <div class="hero-details">
+              <span><i data-lucide="calendar-days" width="16" height="16"></i><span id="hero-date-display">27 نوفمبر 2026</span></span>
+              <span><i data-lucide="clock-3" width="16" height="16"></i><span id="hero-time-display">07:00 م</span></span>
+              <span><i data-lucide="map-pin" width="16" height="16"></i><span>قاعة زيونة للمناسبات</span></span>
+            </div>
+            <a href="#rsvp" class="action-button mt-8 bg-[#fff6e8] text-[#103e43] font-bold">تأكيد الحضور</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="countdown" class="section-wrap text-center" aria-labelledby="countdown-title">
+        <p class="section-kicker">نقترب من الموعد</p>
+        <h2 id="countdown-title" class="section-heading text-4xl font-bold sm:text-5xl">العدّ التنازلي للفرح</h2>
+        <div class="countdown-card">
+          <div id="countdown-grid" class="countdown-grid" aria-label="العد التنازلي لموعد الحفل">
+            <div class="countdown-unit"><span id="days" class="countdown-number">00</span><span class="countdown-label">يوماً</span></div>
+            <div class="countdown-unit"><span id="hours" class="countdown-number">00</span><span class="countdown-label">ساعة</span></div>
+            <div class="countdown-unit"><span id="minutes" class="countdown-number">00</span><span class="countdown-label">دقيقة</span></div>
+            <div class="countdown-unit"><span id="seconds" class="countdown-number">00</span><span class="countdown-label">ثانية</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="details" class="bg-[#f2dfc4]/45" aria-labelledby="details-title">
+        <div class="section-wrap">
+          <div class="max-w-2xl">
+            <p class="section-kicker">تفاصيل الحفل</p>
+            <h2 id="details-title" class="section-heading text-4xl font-bold sm:text-5xl">بانتظاركم في يومنا الكبير</h2>
+          </div>
+          <div class="mt-10 grid gap-5 md:grid-cols-3">
+            <article class="detail-card">
+              <div class="detail-icon"><i data-lucide="calendar-heart" width="21" height="21"></i></div>
+              <h3 class="text-2xl font-bold">التاريخ</h3>
+              <p class="mt-3 text-lg leading-relaxed">الجمعة، 27 نوفمبر 2026</p>
+            </article>
+            <article class="detail-card">
+              <div class="detail-icon"><i data-lucide="clock-3" width="21" height="21"></i></div>
+              <h3 class="text-2xl font-bold">الوقت</h3>
+              <p class="mt-3 text-lg leading-relaxed">السابعة مساءً</p>
+            </article>
+            <article class="detail-card">
+              <div class="detail-icon"><i data-lucide="map-pinned" width="21" height="21"></i></div>
+              <h3 class="text-2xl font-bold">المكان</h3>              <p class="mt-3 text-lg leading-relaxed">قاعة زيونة للمناسبات</p>
+              <a href="https://maps.app.goo.gl/gzSRv7rveai7ufLp9?g_st=ac" target="_blank" rel="noopener noreferrer" class="action-button mt-5 bg-[#103e43] text-[#fff6e8]">
+                فتح الموقع على الخريطة
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="rsvp" class="section-wrap" aria-labelledby="rsvp-title">
+        <div class="rsvp-panel mx-auto max-w-3xl p-6 sm:p-10 text-center">
+          <div class="relative z-10">
+            <p class="text-sm font-bold tracking-[0.16em] text-[#f4d7aa]">نرجو منكم التأكيد</p>
+            <h2 id="rsvp-title" class="mt-2 text-4xl font-bold sm:text-5xl">هل ستشاركوني الفرحة؟</h2>
+            <p class="mt-4 max-w-xl mx-auto text-lg leading-relaxed text-[#fff6e8]">
+              لضمان أفضل ترتيبات لحفلنا، يسعدنا تأكيد حضوركم عبر النموذج الآمن التالي.
+              <br>سيأخذ الأمر دقيقة واحدة فقط من وقتكم.
+            </p>
+            
+            <a 
+              href="https://docs.google.com/forms/d/e/1FAIpQLSc3NMggXG491BYQ_B7PbOtBwk_J9u1gUoDJfDbUnebF-plHlg/viewform?usp=dialog" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="action-button mt-8 bg-[#c9573d] text-[#fff6e8] text-xl font-bold px-10 py-4 rounded-full shadow-lg hover:bg-[#9d3a2c] transition-all transform hover:-translate-y-1 inline-flex items-center gap-3"
+            >
+              <i data-lucide="clipboard-check" width="24" height="24"></i>
+              تأكيد الحضور الآن
+            </a>
+
+            <p class="mt-6 text-sm text-[#f4d7aa]/70">
+              <i data-lucide="shield-check" width="14" height="14" class="inline-block ml-1"></i>
+              نموذج آمن ومجاني عبر Google Forms
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-[#103e43]/15 px-5 py-8 text-center">
+      <p class="text-lg" style="color: var(--ink); font-weight: 700;">وجودكم يكتمل به الفرح ♥</p>
+    </footer>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const entryOverlay = document.getElementById('entry-overlay');
+    const enterBtn = document.getElementById('enter-btn');
+    const bgMusic = document.getElementById('bg-music');
+    const musicFloatBtn = document.getElementById('music-float-btn');    let isMusicPlaying = false;
+
+    enterBtn.addEventListener('click', () => {
+      entryOverlay.classList.add('hidden-overlay');
+      bgMusic.volume = 0.5;
+      bgMusic.play().then(() => {
+        isMusicPlaying = true;
+        musicFloatBtn.classList.add('playing');
+      }).catch(e => {
+        console.log("تعذر تشغيل الموسيقى تلقائياً:", e);
+      });
+
+      setTimeout(() => {
+        document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth' });
+      }, 800);
     });
 
-    // العداد التنازلي لغاية 27-11-2026 الساعة 16:00
-    const targetDate = new Date('November 27, 2026 16:00:00').getTime();
+    musicFloatBtn.addEventListener('click', () => {
+      if (isMusicPlaying) {
+        bgMusic.pause();
+        musicFloatBtn.classList.remove('playing');
+      } else {
+        bgMusic.play();
+        musicFloatBtn.classList.add('playing');
+      }
+      isMusicPlaying = !isMusicPlaying;
+    });
+
+    const weddingDate = new Date("2026-11-27T19:00:00+03:00");
 
     function updateCountdown() {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
+      const difference = weddingDate.getTime() - Date.now();
+      const grid = document.getElementById("countdown-grid");
 
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        document.getElementById('days').innerText = days;
-        document.getElementById('hours').innerText = hours;
-        document.getElementById('minutes').innerText = minutes;
-        document.getElementById('seconds').innerText = seconds;
-      } else {
-        document.getElementById('countdown').innerHTML = "<p>أهلاً وسهلاً بكم في حفلنا!</p>";
+      if (difference <= 0) {
+        grid.innerHTML = "<p class='text-2xl font-bold text-[#c9573d] col-span-4'>حلّ موعد فرحتنا، شكراً لمشاركتكم!</p>";
+        return;
       }
-    }
 
+      const values = {
+        days: Math.floor(difference / 86400000),
+        hours: Math.floor((difference % 86400000) / 3600000),
+        minutes: Math.floor((difference % 3600000) / 60000),
+        seconds: Math.floor((difference % 60000) / 1000)
+      };
+
+      Object.entries(values).forEach(([key, value]) => {
+        document.getElementById(key).textContent = String(value).padStart(2, "0");
+      });
+    }    
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
